@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NKD — Trouvez le bon prestataire au Sénégal</title>
+  <meta name="description" content="NKD est l'application mobile (iPhone et Android) qui met en relation clients et prestataires de services à domicile au Sénégal. Aide ménagère, garde d'enfants, lavage-repassage et plus." />
+  <meta property="og:title" content="NKD — L'application mobile des services à domicile au Sénégal" />
+  <meta property="og:description" content="Téléchargez l'application mobile NKD et trouvez le bon prestataire près de chez vous. Rapide, simple, local." />
+  <meta property="og:type" content="website" />
+  <!-- Image d'aperçu de partage (WhatsApp, Facebook...). Remplacez VOTRE-DOMAINE après le déploiement. -->
+  <meta property="og:image" content="https://VOTRE-DOMAINE/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://VOTRE-DOMAINE/og-image.jpg" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2DC653;
+      --green-dim: #24a344;
+      --yellow: #FFD000;
+      --red: #E31B23;
+      --dark: #000000;
+      --dark2: #0d0d0d;
+      --dark3: #141414;
+      --dark4: #1a1a1a;
+      --muted: #888;
+      --light: #ffffff;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; color: var(--green); }
+    .nav-logo .l-n { color: var(--green); }
+    .nav-logo .l-k { color: var(--yellow); }
+    .nav-logo .l-d { color: var(--red); }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--light); }
+
+    /* Hamburger (caché sur desktop) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 42px; height: 42px;
+      padding: 9px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 110;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--light);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: #000 !important;
+      font-weight: 700 !important;
+      padding: 10px 20px;
+      border-radius: 100px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(45,198,83,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45,198,83,0.1);
+      border: 1px solid rgba(45,198,83,0.3);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      max-width: 820px;
+    }
+
+    h1 em { font-style: normal; color: var(--green); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 28px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--green-dim); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.08);
+      color: var(--light);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 16px 28px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.13); transform: translateY(-1px); }
+
+    .hero-note { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.3); }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      padding: 60px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 40px; font-weight: 900; color: var(--green); line-height: 1; }
+    .stat-number.ia { color: var(--yellow); }
+    .stat-label { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+    /* SECTIONS */
+    section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin-bottom: 56px; }
+
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+    .step-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: border-color 0.2s;
+    }
+
+    .step-card:hover { border-color: rgba(45,198,83,0.3); }
+
+    .step-number {
+      width: 44px; height: 44px;
+      background: rgba(45,198,83,0.12);
+      border: 1px solid rgba(45,198,83,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+
+    .feature-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .feature-icon { flex-shrink: 0; margin-top: 2px; color: var(--green); display: flex; }
+    .feature-icon svg { width: 28px; height: 28px; display: block; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* PRESTATAIRE */
+    .prestataire-section {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      padding: 64px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,208,0,0.1);
+      border: 1px solid rgba(255,208,0,0.3);
+      color: var(--yellow);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .prestataire-section p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 28px; }
+
+    .ia-circle-wrapper { display: flex; align-items: center; justify-content: center; }
+
+    .ia-circle {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: conic-gradient(var(--yellow) 0deg 270deg, #a07800 270deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 8s linear infinite;
+      box-shadow: 0 0 60px rgba(255,208,0,0.2);
+    }
+
+    .ia-circle-inner {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: var(--dark3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .ia-circle-inner span:first-child { font-size: 36px; color: var(--yellow); display: flex; }
+    .ia-circle-inner span:first-child svg { width: 40px; height: 40px; display: block; }
+    .ia-circle-inner span:last-child { font-size: 11px; font-weight: 700; color: var(--yellow); text-transform: uppercase; letter-spacing: 1px; }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .points-box {
+      background: linear-gradient(135deg, rgba(45,198,83,0.08), rgba(45,198,83,0.02));
+      border: 1px solid rgba(45,198,83,0.2);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .points-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--green); }
+
+    .points-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .points-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); }
+    .points-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* DOWNLOAD */
+    .download-section {
+      text-align: center;
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      padding: 80px 40px;
+    }
+
+    .download-section h2 { margin-bottom: 16px; }
+    .download-section p { color: var(--muted); margin-bottom: 40px; font-size: 17px; }
+
+    .store-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--dark4);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 14px 24px;
+      transition: border-color 0.2s, transform 0.15s;
+      min-width: 180px;
+    }
+
+    .store-btn:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
+    .store-btn .store-logo { color: var(--green); display: flex; align-items: center; }
+    .store-btn .store-logo svg { width: 28px; height: 28px; display: block; }
+    .store-btn-text .sub { font-size: 11px; color: var(--muted); }
+    .store-btn-text .name { font-size: 17px; font-weight: 700; }
+
+    .soon-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: 24px;
+    }
+
+    /* WAITLIST */
+    .waitlist-perk-badge {
+      display: inline-block;
+      background: rgba(255,208,0,0.1);
+      border: 1px solid rgba(255,208,0,0.35);
+      color: var(--yellow);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+
+    .perks {
+      list-style: none;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.5;
+    }
+    .perks li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .perks strong { color: var(--light); }
+
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      max-width: 540px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .waitlist-form input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--dark4);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 100px;
+      padding: 16px 24px;
+      color: var(--light);
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .waitlist-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .waitlist-form input:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(45,198,83,0.12);
+    }
+    .waitlist-form input.invalid {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 0 4px rgba(255,107,107,0.12);
+    }
+    .waitlist-form button { border: none; cursor: pointer; white-space: nowrap; }
+    .waitlist-form button:disabled { opacity: 0.6; cursor: default; }
+
+    .waitlist-msg {
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      min-height: 20px;
+    }
+    .waitlist-msg.ok { color: var(--green); }
+    .waitlist-msg.err { color: #ff6b6b; }
+    .waitlist-note { color: rgba(255,255,255,0.35) !important; font-size: 13px !important; margin: 14px 0 0 !important; }
+
+    /* Store buttons appear only once links are configured */
+    #store-buttons { margin-top: 36px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.07); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 48px 32px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p { font-size: 14px; color: var(--muted); max-width: 260px; margin-top: 10px; }
+    .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
+    }
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes shine { 0% { left: -120%; } 60%, 100% { left: 130%; } }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(45,198,83,0.0); }
+      50% { box-shadow: 0 0 0 6px rgba(45,198,83,0.06); }
+    }
+
+    /* Hero entrance (staggered) */
+    .hero-badge, .hero h1, .hero-sub, .hero-buttons, .hero-note {
+      opacity: 0;
+      animation: fadeUp 0.85s cubic-bezier(0.22,0.61,0.36,1) forwards;
+    }
+    .hero h1 { animation-delay: 0.12s; }
+    .hero-sub { animation-delay: 0.24s; }
+    .hero-buttons { animation-delay: 0.36s; }
+    .hero-note { animation-delay: 0.48s; }
+    .hero-badge { animation: fadeUp 0.85s cubic-bezier(0.22,0.61,0.36,1) forwards, badgePulse 3.5s ease-in-out 1s infinite; }
+    .hero::before { animation: glowPulse 6s ease-in-out infinite; }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Nav shrink on scroll */
+    nav { transition: padding 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+    nav.scrolled { padding: 12px 32px; background: rgba(0,0,0,0.95); border-bottom-color: rgba(255,255,255,0.1); }
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -5px;
+      width: 0; height: 2px; background: var(--green); transition: width 0.25s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(45,198,83,0.4); }
+
+    /* Card hover */
+    .step-card, .feature-card { transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease; }
+    .step-card:hover, .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(45,198,83,0.4);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+    }
+    .feature-icon { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+    .feature-card:hover .feature-icon { transform: scale(1.18) rotate(-5deg); }
+    .step-number { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), background 0.28s ease; }
+    .step-card:hover .step-number { transform: scale(1.1); background: rgba(45,198,83,0.2); }
+
+    /* Stat hover */
+    .stat-number { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .stat-item:hover .stat-number { transform: scale(1.1); }
+
+    /* Button shine */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: -120%;
+      width: 55%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: skewX(-20deg); pointer-events: none;
+    }
+    .btn-primary:hover::after { animation: shine 0.85s ease; }
+
+    /* Store buttons */
+    .store-btn .store-logo { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+    .store-btn:hover .store-logo { transform: scale(1.15); }
+
+    /* Floating IA circle */
+    .ia-circle-wrapper { animation: floatY 5s ease-in-out infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero-badge, .hero h1, .hero-sub, .hero-buttons, .hero-note { opacity: 1 !important; }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-toggle { display: flex; }
+
+      /* Menu déroulant */
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 6px 20px 18px;
+        background: rgba(0,0,0,0.97);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      }
+      .nav-links.open { opacity: 1; visibility: visible; transform: none; }
+      .nav-links li { width: 100%; }
+      .nav-links li a {
+        display: block;
+        padding: 15px 4px;
+        font-size: 16px;
+        color: var(--light);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .nav-links a::after { display: none; }
+      .nav-cta {
+        text-align: center;
+        margin-top: 14px;
+        padding: 15px !important;
+        border-bottom: none !important;
+      }
+
+      section { padding: 72px 20px; }
+      .stats { gap: 28px 32px; padding: 48px 20px; }
+
+      .hero { padding: 110px 20px 70px; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .hero-buttons a { width: 100%; justify-content: center; }
+
+      .prestataire-section { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+      .prestataire-section .ia-circle-wrapper { order: -1; }
+
+      .download-section { padding: 56px 22px; }
+      .waitlist-form { flex-direction: column; }
+      .waitlist-form input, .waitlist-form button { width: 100%; }
+      .store-buttons { flex-direction: column; }
+      .store-btn { width: 100%; }
+
+      footer { padding: 40px 20px 28px; }
+      .footer-top { flex-direction: column; }
+      .footer-links { gap: 32px; }
+    }
+
+    @media (max-width: 380px) {
+      .stats { flex-direction: column; gap: 24px; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo"><span class="l-n">N</span><span class="l-k">K</span><span class="l-d">D</span></span>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+    <li><a href="#prestataires">Prestataires</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="#acces-anticipe" class="nav-cta">Accès anticipé</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Application mobile · Bêta ouverte au Sénégal</div>
+  <h1>Trouvez le bon<br /><em>prestataire</em><br />près de chez vous</h1>
+  <p class="hero-sub"><strong>L'application mobile</strong> qui vous connecte aux prestataires de services à domicile : aide ménagère, garde d'enfants, lavage-repassage... La bêta est ouverte — rejoignez-la et recevez <strong>10 points offerts</strong>.</p>
+  <div class="hero-buttons">
+    <a href="#acces-anticipe" class="btn-primary">Rejoindre l'accès anticipé</a>
+    <a href="#comment-ca-marche" class="btn-secondary">Comment ça marche →</a>
+  </div>
+  <p class="hero-note">Gratuit — il suffit de votre email</p>
+</section>
+
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Catégories au lancement</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">1 pt</div>
+    <div class="stat-label">Pour débloquer un contact</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">10 pts</div>
+    <div class="stat-label">Offerts à l'inscription</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number ia">IA</div>
+    <div class="stat-label">Onboarding en wolof</div>
+  </div>
+</div>
+
+<section id="comment-ca-marche">
+  <div class="section-tag">Comment ça marche</div>
+  <h2>Simple comme un appel</h2>
+  <p class="section-sub">Trois étapes pour entrer en contact avec le bon prestataire.</p>
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Cherchez</h3>
+      <p>Parcourez les catégories ou utilisez la recherche libre. Filtrez par zone, compétences, tarifs.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>Débloquez</h3>
+      <p>Utilisez 1 point pour révéler le numéro du prestataire. Vous ne payez qu'une seule fois par prestataire.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>Contactez</h3>
+      <p>Appelez directement le prestataire. Pas d'intermédiaire, pas de commission. Vous vous arrangez entre vous.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-tag">Fonctionnalités</div>
+  <h2>Tout ce dont vous avez besoin</h2>
+  <p class="section-sub">Conçu pour la réalité du marché sénégalais.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      <div>
+        <h3>Recherche intelligente</h3>
+        <p>Trouvez un prestataire par mot-clé, catégorie ou zone. Résultats triés par note.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+      <div>
+        <h3>Avis vérifiés</h3>
+        <p>Seuls les clients ayant débloqué un contact peuvent laisser un avis. Pas de faux retours.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+      <div>
+        <h3>Numéro protégé</h3>
+        <p>Le numéro du prestataire est caché jusqu'au déblocage. Votre vie privée est préservée.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+      <div>
+        <h3>Contact direct</h3>
+        <p>Aucun paiement dans l'app. Vous négociez et payez directement avec le prestataire.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      <div>
+        <h3>Historique des contacts</h3>
+        <p>Retrouvez tous les prestataires débloqués dans votre profil, à tout moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prestataires" style="padding-top: 0;">
+  <div class="prestataire-section">
+    <div>
+      <div class="ai-badge">✦ Intelligence Artificielle</div>
+      <h2>Vous êtes prestataire ?</h2>
+      <p>Créez votre profil en quelques minutes grâce à notre onboarding guidé par IA. Répondez aux questions en wolof ou en français — l'IA génère votre profil automatiquement.</p>
+      <div class="points-box">
+        <h3>Pourquoi rejoindre NKD</h3>
+        <ul class="points-list">
+          <li>Profil créé par IA à partir de vos réponses vocales</li>
+          <li>Visible par tous les clients qui cherchent votre métier</li>
+          <li>Zéro commission — vous gardez 100% de vos revenus</li>
+          <li>Avis clients pour construire votre réputation</li>
+          <li>Inscription gratuite</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ia-circle-wrapper">
+      <div class="ia-circle">
+        <div class="ia-circle-inner">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span>
+          <span>IA Wolof</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-tag">Catégories disponibles</div>
+  <h2>Services à domicile</h2>
+  <p class="section-sub">Phase 1 — d'autres catégories seront ajoutées progressivement.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <div>
+        <h3>Aide à domicile</h3>
+        <p>Ménage, nettoyage, entretien de la maison. Trouvez une aide fiable près de chez vous.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
+      <div>
+        <h3>Lavage &amp; Repassage</h3>
+        <p>Entretien du linge, repassage soigné. Des prestataires qualifiés à votre service.</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+      <div>
+        <h3>Garde d'enfants</h3>
+        <p>Nounou, baby-sitter de confiance. Trouvez la bonne personne pour vos enfants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="acces-anticipe" style="padding-top: 0;">
+  <div class="download-section">
+    <div class="waitlist-perk-badge">★ Bêta ouverte · Places limitées</div>
+    <h2>Testez l'application mobile NKD en avant-première</h2>
+    <p>La bêta de l'application mobile NKD est ouverte (iPhone et Android). Laissez votre email : on vous envoie le lien pour l'installer sur votre téléphone — et vous repartez avec un bonus.</p>
+
+    <ul class="perks">
+      <li><strong>10 points offerts</strong> (au lieu de 5 au lancement officiel) — soit 10 contacts débloqués gratuitement</li>
+      <li><strong>Accès immédiat à la bêta</strong> sur TestFlight (iPhone) et Google Play (Android)</li>
+      <li><strong>On vous contacte par email</strong> avec votre lien d'installation, sans spam</li>
+    </ul>
+
+    <form class="waitlist-form" id="waitlist-form" novalidate>
+      <input type="email" id="waitlist-email" name="email" placeholder="votre@email.com" autocomplete="email" required />
+      <button type="submit" class="btn-primary" id="waitlist-submit">Je veux tester l'application</button>
+    </form>
+    <p class="waitlist-msg" id="waitlist-msg" role="status" aria-live="polite"></p>
+    <p class="waitlist-note">Gratuit. Aucun engagement. On ne partage jamais votre email.</p>
+
+    <div class="store-buttons" id="store-buttons" hidden>
+      <a href="#" class="store-btn" data-store="ios" target="_blank" rel="noopener">
+        <span class="store-logo"><svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span>
+        <div class="store-btn-text">
+          <div class="sub">Télécharger sur</div>
+          <div class="name">App Store</div>
+        </div>
+      </a>
+      <a href="#" class="store-btn" data-store="android" target="_blank" rel="noopener">
+        <span class="store-logo"><svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3 60.1 60.1L104.6 499z"/></svg></span>
+        <div class="store-btn-text">
+          <div class="sub">Disponible sur</div>
+          <div class="name">Google Play</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="nav-logo"><span class="l-n">N</span><span class="l-k">K</span><span class="l-d">D</span></span>
+      <p>Plateforme de mise en relation entre clients et prestataires de services au Sénégal.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Application</h4>
+        <ul>
+          <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="#prestataires">Pour les prestataires</a></li>
+          <li><a href="#acces-anticipe">Accès anticipé</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+          <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a></li>
+          <li><a href="support.html">Aide &amp; Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 NKD. Tous droits réservés.</span>
+    
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* =========================================================
+   *  CONFIG — à remplir une fois l'app déployée.
+   *  Tant qu'un lien est vide, son bouton reste masqué.
+   * ========================================================= */
+  var CONFIG = {
+    // Lien iOS (TestFlight pour la bêta, puis App Store au lancement)
+    APP_STORE_URL: '',
+    // Lien Android (piste de test Google Play, puis fiche Play Store)
+    PLAY_STORE_URL: '',
+    // Endpoint qui reçoit les emails. Le plus simple : créer un formulaire
+    // sur https://formspree.io et coller l'URL "https://formspree.io/f/xxxxxx" ici.
+    // Laissé vide => l'email est gardé en local (localStorage) pour ne rien perdre en dev.
+    FORM_ENDPOINT: 'https://formspree.io/f/meeddlnj'
+  };
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav shrink on scroll
+  var nav = document.querySelector('nav');
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 20); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Menu déroulant mobile
+  (function setupMenu() {
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.getElementById('nav-links');
+    if (!toggle || !links) return;
+
+    function setOpen(open) {
+      links.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!links.classList.contains('open'));
+    });
+
+    // Fermer en cliquant un lien
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+
+    // Fermer en cliquant en dehors
+    document.addEventListener('click', function (e) {
+      if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+
+    // Fermer avec Échap
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    // Réinitialiser si on repasse en desktop
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) setOpen(false);
+    });
+  })();
+
+  // Active les boutons stores dès que les liens sont renseignés
+  (function setupStores() {
+    var wrap = document.getElementById('store-buttons');
+    if (!wrap) return;
+    var map = { ios: CONFIG.APP_STORE_URL, android: CONFIG.PLAY_STORE_URL };
+    var anyVisible = false;
+    wrap.querySelectorAll('.store-btn').forEach(function (btn) {
+      var url = map[btn.getAttribute('data-store')];
+      if (url) { btn.href = url; btn.style.display = ''; anyVisible = true; }
+      else { btn.style.display = 'none'; }
+    });
+    if (anyVisible) wrap.hidden = false;
+  })();
+
+  // Formulaire d'accès anticipé
+  (function setupWaitlist() {
+    var form = document.getElementById('waitlist-form');
+    if (!form) return;
+    var input = document.getElementById('waitlist-email');
+    var btn = document.getElementById('waitlist-submit');
+    var msg = document.getElementById('waitlist-msg');
+    var btnLabel = btn.textContent;
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function setMsg(text, type) {
+      msg.textContent = text;
+      msg.className = 'waitlist-msg' + (type ? ' ' + type : '');
+    }
+
+    function succeed(email) {
+      form.reset();
+      input.classList.remove('invalid');
+      setMsg('C\'est noté ! On vous contacte très vite par email pour vous envoyer le lien de l\'app.', 'ok');
+      btn.disabled = false;
+      btn.textContent = btnLabel;
+      try {
+        var list = JSON.parse(localStorage.getItem('nkd_waitlist') || '[]');
+        if (list.indexOf(email) === -1) { list.push(email); localStorage.setItem('nkd_waitlist', JSON.stringify(list)); }
+      } catch (e) {}
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!emailRe.test(email)) {
+        input.classList.add('invalid');
+        input.focus();
+        setMsg('Entrez une adresse email valide.', 'err');
+        return;
+      }
+      input.classList.remove('invalid');
+      btn.disabled = true;
+      btn.textContent = 'Envoi…';
+      setMsg('', '');
+
+      if (!CONFIG.FORM_ENDPOINT) {
+        // Pas d'endpoint configuré : on garde l'email en local pour ne rien perdre.
+        succeed(email);
+        return;
+      }
+
+      fetch(CONFIG.FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'site-mvp', date: new Date().toISOString() })
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('bad response');
+          succeed(email);
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = btnLabel;
+          setMsg('Oups, une erreur est survenue. Réessayez ou écrivez-nous à lahatdiouck@gmail.com', 'err');
+        });
+    });
+  })();
+
+  if (reduce) return;
+
+  // Reveal on scroll
+  var selectors = [
+    '.section-tag', 'section h2', '.section-sub',
+    '.step-card', '.feature-card', '.points-box',
+    '.ia-circle-wrapper', '.prestataire-section h2', '.prestataire-section p',
+    '.download-section', '.footer-top', '.footer-bottom'
+  ];
+  var els = document.querySelectorAll(selectors.join(','));
+  els.forEach(function (el) { el.classList.add('reveal'); });
+
+  // Stagger items inside grids
+  document.querySelectorAll('.steps, .features-grid').forEach(function (grid) {
+    Array.prototype.forEach.call(grid.children, function (child, i) {
+      child.style.transitionDelay = (i * 80) + 'ms';
+    });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+
+  // Animated count-up for stats
+  var stats = document.querySelector('.stats');
+  if (stats) {
+    var statIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        statIO.unobserve(e.target);
+        document.querySelectorAll('.stat-number').forEach(function (node) {
+          var text = node.textContent.trim();
+          var m = text.match(/^(\d+)/);
+          if (!m) return; // skip "IA"
+          var target = parseInt(m[1], 10);
+          var suffix = text.slice(m[1].length);
+          var dur = 1100, start = performance.now();
+          function tick(now) {
+            var p = Math.min((now - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            node.textContent = Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      });
+    }, { threshold: 0.4 });
+    statIO.observe(stats);
+  }
+})();
+</script>
+
+</body>
+</html>

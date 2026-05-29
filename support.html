@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — NKD</title>
+  <meta name="description" content="Aide et support pour l'application mobile NKD. Trouvez des réponses à vos questions ou contactez notre équipe." />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2DC653;
+      --yellow: #FFD000;
+      --red: #E31B23;
+      --dark: #000000;
+      --dark3: #141414;
+      --dark4: #1a1a1a;
+      --muted: #888;
+      --light: #ffffff;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo { font-size: 22px; font-weight: 900; color: var(--green); }
+    .nav-logo .l-n { color: var(--green); }
+    .nav-logo .l-k { color: var(--yellow); }
+    .nav-logo .l-d { color: var(--red); }
+    .nav-back { font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--light); }
+
+    .page-header {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--muted); }
+
+    main { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* CONTACT BOX */
+    .contact-box {
+      background: var(--dark3);
+      border: 1px solid rgba(45,198,83,0.2);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-box h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .contact-box p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover { opacity: 0.85; }
+
+    .response-time {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* FAQ */
+    .faq-section h2 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 28px;
+    }
+
+    .faq-group { margin-bottom: 48px; }
+
+    .faq-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(45,198,83,0.2);
+    }
+
+    details {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    summary {
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    details[open] summary { color: var(--green); }
+
+    .faq-answer {
+      padding: 0 0 20px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .faq-answer strong { color: var(--light); }
+
+    .faq-answer a { color: var(--green); text-decoration: underline; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 32px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer a { color: var(--muted); margin: 0 12px; }
+    footer a:hover { color: var(--light); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="l-n">N</span><span class="l-k">K</span><span class="l-d">D</span></a>
+  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+</nav>
+
+<div class="page-header">
+  <h1>Support &amp; Aide</h1>
+  <p>Trouvez des réponses à vos questions. Si vous ne trouvez pas, notre équipe est là pour vous.</p>
+</div>
+
+<main>
+
+  <!-- CONTACT -->
+  <div class="contact-box">
+    <h2>Contacter l'équipe NKD</h2>
+    <p>Pour toute question non couverte ici, écrivez-nous directement.</p>
+    <a href="mailto:lahatdiouck@gmail.com" class="contact-email">lahatdiouck@gmail.com</a>
+    <p class="response-time">Réponse sous 24–48h (jours ouvrés)</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Questions fréquentes</h2>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Compte &amp; Inscription</div>
+
+      <details>
+        <summary>Comment créer un compte ?</summary>
+        <div class="faq-answer">
+          Téléchargez l'application NKD, saisissez votre numéro de téléphone sénégalais (+221) et entrez le code reçu par SMS. C'est tout — pas de mot de passe, pas d'email requis.
+        </div>
+      </details>
+
+      <details>
+        <summary>Quelle est la différence entre CLIENT et PRESTATAIRE ?</summary>
+        <div class="faq-answer">
+          <strong>Client :</strong> vous cherchez un prestataire de service. Vous recevez 10 points gratuits à l'inscription pour débloquer vos premiers contacts.<br /><br />
+          <strong>Prestataire :</strong> vous proposez vos services. Vous créez votre profil via un onboarding guidé par IA (questions en wolof ou français), et vous apparaissez dans les résultats de recherche.
+        </div>
+      </details>
+
+      <details>
+        <summary>Je n'ai pas reçu mon code SMS. Que faire ?</summary>
+        <div class="faq-answer">
+          Vérifiez que le numéro saisi est correct (format +221XXXXXXXXX). Attendez 1 à 2 minutes. Si le problème persiste, contactez-nous à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a>.
+        </div>
+      </details>
+
+      <details>
+        <summary>Puis-je avoir un compte CLIENT et PRESTATAIRE avec le même numéro ?</summary>
+        <div class="faq-answer">
+          Non. Un numéro de téléphone est associé à un seul rôle. Si vous souhaitez changer de rôle, contactez notre support.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Points &amp; Déblocage de contact</div>
+
+      <details>
+        <summary>Comment fonctionnent les points ?</summary>
+        <div class="faq-answer">
+          Les points permettent de débloquer le numéro de téléphone d'un prestataire. <strong>1 point = 1 contact débloqué.</strong> À l'inscription, vous recevez automatiquement 10 points gratuits.
+        </div>
+      </details>
+
+      <details>
+        <summary>Comment obtenir plus de points ?</summary>
+        <div class="faq-answer">
+          Les modalités d'achat de points seront disponibles lors du lancement officiel. Suivez nos réseaux pour être informé.
+        </div>
+      </details>
+
+      <details>
+        <summary>Si je débloque un contact par erreur, puis-je être remboursé ?</summary>
+        <div class="faq-answer">
+          Le déblocage est définitif mais vous conservez l'accès au numéro pour toujours. Si vous pensez qu'il s'agit d'une erreur technique, contactez-nous à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a>.
+        </div>
+      </details>
+
+      <details>
+        <summary>Un prestataire que j'ai débloqué a changé de numéro. Que faire ?</summary>
+        <div class="faq-answer">
+          Signalez-le nous à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a> avec le nom du prestataire. Nous vérifierons et mettrons à jour l'information.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Pour les prestataires</div>
+
+      <details>
+        <summary>Comment créer mon profil de prestataire ?</summary>
+        <div class="faq-answer">
+          Lors de votre première connexion, vous serez guidé par notre IA à travers 5 questions simples (nom, métier, zone, expérience, compétences). Vous pouvez répondre en wolof ou en français. L'IA génère votre profil automatiquement.
+        </div>
+      </details>
+
+      <details>
+        <summary>Mon métier n'est pas reconnu par l'IA. Que faire ?</summary>
+        <div class="faq-answer">
+          Certains métiers ne sont pas encore supportés dans cette première phase. Contactez-nous à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a> pour nous l'indiquer — nous ajouterons votre catégorie prochainement.
+        </div>
+      </details>
+
+      <details>
+        <summary>Comment modifier mon profil après l'onboarding ?</summary>
+        <div class="faq-answer">
+          Rendez-vous dans l'onglet <strong>Profil</strong> de l'application. Vous pouvez modifier votre photo, titre, bio, compétences, zone de service et tarifs à tout moment.
+        </div>
+      </details>
+
+      <details>
+        <summary>Pourquoi je n'apparais pas dans les recherches ?</summary>
+        <div class="faq-answer">
+          Votre profil n'est visible qu'après avoir complété l'onboarding IA. Assurez-vous d'avoir répondu à toutes les questions. Si le problème persiste, contactez notre support.
+        </div>
+      </details>
+
+      <details>
+        <summary>NKD prend-il une commission sur mes revenus ?</summary>
+        <div class="faq-answer">
+          Non. NKD ne prend aucune commission. Vous êtes mis en contact avec le client, et vous négociez et encaissez directement. L'application ne gère aucun paiement.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Technique &amp; Sécurité</div>
+
+      <details>
+        <summary>L'application est-elle disponible sur Android et iOS ?</summary>
+        <div class="faq-answer">
+          Oui. NKD sera disponible sur l'App Store (iPhone) et Google Play (Android) lors du lancement.
+        </div>
+      </details>
+
+      <details>
+        <summary>Mes données personnelles sont-elles sécurisées ?</summary>
+        <div class="faq-answer">
+          Oui. Vos données sont stockées de manière sécurisée. Votre numéro de téléphone n'est jamais affiché publiquement. Consultez notre <a href="politique-confidentialite.html">politique de confidentialité</a> pour tous les détails.
+        </div>
+      </details>
+
+      <details>
+        <summary>Comment signaler un prestataire ou un comportement suspect ?</summary>
+        <div class="faq-answer">
+          Envoyez un email à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a> avec le nom du prestataire et une description du problème. Nous traiterons votre signalement sous 48h.
+        </div>
+      </details>
+
+      <details>
+        <summary>Comment supprimer mon compte ?</summary>
+        <div class="faq-answer">
+          Envoyez une demande de suppression à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a> depuis le numéro associé à votre compte. Nous supprimerons toutes vos données sous 30 jours.
+        </div>
+      </details>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div>
+    <a href="index.html">Accueil</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
+    <a href="conditions-utilisation.html">CGU</a>
+    <a href="mailto:lahatdiouck@gmail.com">Contact</a>
+  </div>
+  <div style="margin-top: 16px;">© 2026 NKD. Tous droits réservés.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité — NKD</title>
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2DC653;
+      --yellow: #FFD000;
+      --red: #E31B23;
+      --dark: #000000;
+      --dark3: #141414;
+      --muted: #888;
+      --light: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo { font-size: 22px; font-weight: 900; color: var(--green); text-decoration: none; }
+    .nav-logo .l-n { color: var(--green); }
+    .nav-logo .l-k { color: var(--yellow); }
+    .nav-logo .l-d { color: var(--red); }
+    .nav-back { font-size: 14px; color: var(--muted); text-decoration: none; }
+    .nav-back:hover { color: var(--light); }
+
+    main { max-width: 760px; margin: 0 auto; padding: 60px 24px 100px; }
+
+    .doc-header { margin-bottom: 56px; }
+    .doc-header h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -1px; margin-bottom: 12px; }
+    .doc-header .meta { font-size: 14px; color: var(--muted); }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 48px 0 14px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    h2:first-of-type { border-top: none; padding-top: 0; }
+
+    p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 14px; }
+
+    ul {
+      margin: 12px 0 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li { font-size: 15px; color: rgba(255,255,255,0.75); }
+
+    strong { color: var(--light); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 32px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer a { color: var(--muted); margin: 0 12px; text-decoration: none; }
+    footer a:hover { color: var(--light); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="l-n">N</span><span class="l-k">K</span><span class="l-d">D</span></a>
+  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+</nav>
+
+<main>
+  <div class="doc-header">
+    <h1>Politique de confidentialité</h1>
+    <p class="meta">Dernière mise à jour : 29 mai 2026</p>
+  </div>
+
+  <h2>1. Qui sommes-nous ?</h2>
+  <p>NKD est une application mobile de mise en relation entre clients et prestataires de services à domicile au Sénégal. Le responsable du traitement des données est NKD, joignable à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a>.</p>
+
+  <h2>2. Données collectées</h2>
+  <p>Nous collectons uniquement les données nécessaires au fonctionnement du service :</p>
+  <ul>
+    <li><strong>Numéro de téléphone</strong> — utilisé pour l'authentification par SMS et l'identification du compte.</li>
+    <li><strong>Nom (optionnel)</strong> — pour personnaliser votre profil.</li>
+    <li><strong>Profil prestataire</strong> — titre, bio, compétences, zone de service, tarifs, photo, expérience (uniquement pour les prestataires).</li>
+    <li><strong>Contacts débloqués</strong> — historique des mises en relation effectuées.</li>
+    <li><strong>Avis laissés</strong> — notes et commentaires sur les prestataires.</li>
+    <li><strong>Données d'utilisation</strong> — erreurs techniques et logs (via Sentry) pour améliorer l'application.</li>
+  </ul>
+
+  <h2>3. Utilisation des données</h2>
+  <p>Vos données sont utilisées exclusivement pour :</p>
+  <ul>
+    <li>Vous authentifier et sécuriser votre compte.</li>
+    <li>Afficher votre profil (prestataire) aux clients qui cherchent vos services.</li>
+    <li>Gérer votre solde de points et l'historique de vos contacts débloqués.</li>
+    <li>Améliorer la stabilité et les performances de l'application.</li>
+  </ul>
+  <p>Nous ne vendons, ne louons et ne partageons jamais vos données personnelles avec des tiers à des fins commerciales.</p>
+
+  <h2>4. Partage des données</h2>
+  <p>Vos données sont partagées de manière limitée avec :</p>
+  <ul>
+    <li><strong>Prestataires :</strong> votre nom peut apparaître dans les avis que vous laissez.</li>
+    <li><strong>Clients :</strong> votre numéro de téléphone est révélé uniquement aux clients qui ont utilisé un point pour le débloquer.</li>
+    <li><strong>Sentry :</strong> service de monitoring technique qui reçoit des logs d'erreurs anonymisés.</li>
+    <li><strong>Google Cloud :</strong> notre infrastructure d'hébergement (backend déployé sur Google Cloud Run).</li>
+  </ul>
+
+  <h2>5. Conservation des données</h2>
+  <p>Vos données sont conservées tant que votre compte est actif. En cas de suppression de compte, nous supprimons toutes vos données personnelles dans un délai de <strong>30 jours</strong>. Certaines données peuvent être conservées plus longtemps si la loi l'exige.</p>
+
+  <h2>6. Sécurité</h2>
+  <p>Nous mettons en œuvre des mesures techniques pour protéger vos données :</p>
+  <ul>
+    <li>Tokens d'authentification stockés de manière sécurisée sur votre appareil (Secure Store).</li>
+    <li>Toutes les communications entre l'application et nos serveurs sont chiffrées via HTTPS.</li>
+    <li>Les mots de passe n'existent pas — l'authentification se fait uniquement par SMS.</li>
+    <li>Votre numéro de téléphone n'est jamais affiché publiquement sans votre consentement.</li>
+  </ul>
+
+  <h2>7. Vos droits</h2>
+  <p>Conformément à la réglementation applicable, vous disposez des droits suivants :</p>
+  <ul>
+    <li><strong>Accès :</strong> obtenir une copie des données que nous détenons sur vous.</li>
+    <li><strong>Rectification :</strong> corriger des informations inexactes via l'application ou par email.</li>
+    <li><strong>Suppression :</strong> demander la suppression de votre compte et de vos données.</li>
+    <li><strong>Opposition :</strong> vous opposer à certains traitements de vos données.</li>
+  </ul>
+  <p>Pour exercer ces droits, contactez-nous à <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a>.</p>
+
+  <h2>8. Données des mineurs</h2>
+  <p>NKD est destiné aux personnes âgées de 18 ans et plus. Nous ne collectons pas sciemment de données concernant des mineurs. Si vous pensez qu'un mineur a créé un compte, contactez-nous immédiatement.</p>
+
+  <h2>9. Modifications de cette politique</h2>
+  <p>Nous pouvons mettre à jour cette politique de confidentialité. En cas de modification substantielle, nous vous en informerons via l'application. La date de dernière mise à jour est toujours indiquée en haut de ce document.</p>
+
+  <h2>10. Contact</h2>
+  <p>Pour toute question relative à la confidentialité de vos données, contactez-nous à : <a href="mailto:lahatdiouck@gmail.com">lahatdiouck@gmail.com</a>.</p>
+</main>
+
+<footer>
+  <div>
+    <a href="index.html">Accueil</a>
+    <a href="support.html">Support</a>
+    <a href="conditions-utilisation.html">CGU</a>
+    <a href="mailto:lahatdiouck@gmail.com">Contact</a>
+  </div>
+  <div style="margin-top: 16px;">© 2026 NKD. Tous droits réservés.</div>
+</footer>
+
+</body>
+</html>
